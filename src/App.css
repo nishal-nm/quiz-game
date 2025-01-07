@@ -1,0 +1,173 @@
+/* General Body Styling */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Main Quiz Container */
+.quiz-container {
+  width: 90%;
+  max-width: 600px;
+  background-color: #ebebeb;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Heading */
+.quiz-container h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-top: 0;
+}
+
+/* Question Container */
+.question-container {
+  margin: 20px 0;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* Options Styling */
+.options-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.options-container button {
+  background-color: #ecf0f1;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.options-container button:hover {
+  background-color: #606466;
+  transform: scale(1.03);
+}
+
+.options-container button:active {
+  transform: scale(0.98);
+}
+
+/* Result Component */
+.result-container {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #16a085;
+}
+
+.failed-container {
+  color: #d8000c;
+  background-color: #ffd2d2;
+  border: 1px solid #d8000c;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.failed-container h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Specific styles for the congratulations response container */
+.congratulations-container {
+  color: #4f8a10; /* A deep green, indicating success */
+  background-color: #dff2bf; /* A light green, providing a soft, positive background */
+  border: 1px solid #4f8a10; /* Border color matching the text */
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.congratulations-container h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.quiz-container h2 {
+  text-align: center;
+  font-weight: bold;
+}
+
+.start-container {
+  text-align: center;
+}
+
+.start-container button {
+  align-self: center;
+  padding: 10px 20px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.start-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Base styles included as previously defined */
+
+@media (max-width: 600px) {
+  /* General Body Styling for smaller screens */
+  body {
+    font-size: 14px; /* Smaller base font size */
+    width: 100%;
+  }
+
+  /* Adjust main quiz container for mobile */
+  .quiz-container {
+    width: 95%; /* Use more of the screen width */
+    padding: 15px; /* Slightly less padding */
+  }
+
+  /* Heading adjustments for smaller screens */
+  .quiz-container h1,
+  .failed-container h1,
+  .congratulations-container h1,
+  .quiz-container h2 {
+    font-size: 1.2em; /* Smaller headings */
+  }
+
+  /* Question Container - less margin for a compact look */
+  .question-container {
+    margin: 10px 0;
+  }
+
+  /* Options container - stack options vertically */
+  .options-container {
+    grid-template-columns: 1fr; /* Stack options vertically */
+    gap: 5px; /* Reduce gap size */
+  }
+
+  /* Buttons - larger touch targets */
+  .options-container button,
+  .start-container button {
+    padding: 12px 24px; /* Larger padding for easier touch */
+    font-size: 1em; /* Larger font size for readability */
+  }
+
+  /* Adjust result and start containers for better mobile presentation */
+  .result-container,
+  .start-container {
+    padding: 10px; /* Adjust padding */
+  }
+}
