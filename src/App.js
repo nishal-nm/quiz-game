@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import Losing from "./components/Losing";
 import Options from "./components/Options";
 import Question from "./components/Question";
 import Result from "./components/Result";
+import Starting from "./components/Starting";
+import Winning from "./components/Winning";
 import questions from "./questions";
 
 function App() {
-  const noOfQuestions = 5;
+  const noOfQuestions = 15;
 
-  const [asked, setAsked] = useState([]);
+  const [asked, setAsked] = useState([]); // Array to store asked questions
   const [qNo, setQNo] = useState(null); // Initially set to null
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [count, setCount] = useState(1);
+  const [selectedOption, setSelectedOption] = useState(null); // To store the currently selected option
+  const [count, setCount] = useState(1); // Score count
   const [quizStatus, setQuizStatus] = useState("start");
   const [timeLeft, setTimeLeft] = useState(30); // 30 seconds for each question
 
+  // Ensure to set the first question after component mounts
   useEffect(() => {
     if (qNo === null) {
-      // Ensure to set the first question after component mounts
       setQNo(getRandomQuestion(asked));
     }
   }, [asked, qNo]); // Dependency on 'asked' to reset when needed
@@ -45,12 +48,13 @@ function App() {
     }
   }, [timeLeft]); // Run this effect whenever timeLeft changes
 
+  // Choose new question from the questions as random
   function getRandomQuestion(excludes) {
     let randomNumber;
     do {
       randomNumber = Math.floor(Math.random() * questions.length);
     } while (excludes.includes(randomNumber));
-    setTimeLeft(10);
+    setTimeLeft(30);
     return randomNumber;
   }
 
@@ -78,47 +82,22 @@ function App() {
     }, 500);
   }
 
+  // Starting card
   if (quizStatus === "start") {
-    return (
-      <div className="quiz-container">
-        <h1>Welcome to the Quiz!</h1>
-        <div className="start-container">
-          <p>Number of Questions: {noOfQuestions}</p>
-          <button
-            onClick={() => {
-              setQuizStatus("going");
-            }}
-          >
-            Start Quiz
-          </button>
-        </div>
-      </div>
-    );
+    return <Starting totalQues={noOfQuestions} setStatus={setQuizStatus} />;
   }
 
   if (quizStatus === "won") {
-    return (
-      <div className="quiz-container">
-        <div className="congratulations-container">
-          <h1>Congratulations! You've completed the quiz.</h1>
-        </div>
-      </div>
-    );
+    return <Winning />; // Winning Card
   } else if (quizStatus === "lost") {
-    return (
-      <div className="quiz-container">
-        <div className="failed-container">
-          <h1>Sorry, you did not pass the quiz. Try again!</h1>
-        </div>
-        <h2>Your Score: {count - 1}</h2>
-      </div>
-    );
+    return <Losing count={count} />; // Losing Card
   }
 
   if (qNo === null) {
-    return <div>Loading...</div>; // Display loading or similar text while qNo is null
+    return <div>Loading...</div>; // Display loading while qNo is null
   }
 
+  // Questioning cards
   return (
     <div className="quiz-container">
       <h1>Question No: {count}</h1>
